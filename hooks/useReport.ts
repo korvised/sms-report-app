@@ -30,10 +30,10 @@ export const useReport = () => {
 
     setFilter({
       ...filter,
+      chanel: preFilter.chanel,
       search: validateMsisdn(preFilter.search),
       start_date: format(new Date(preFilter.start_date), "yyyy-MM-dd"),
       end_date: format(new Date(preFilter.end_date), "yyyy-MM-dd"),
-      chanel: preFilter.chanel === "all" ? "" : preFilter.chanel,
     })
   }
 

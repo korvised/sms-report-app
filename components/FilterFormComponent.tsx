@@ -1,6 +1,10 @@
+import clsx from "clsx"
 import { HiAdjustmentsHorizontal, HiMagnifyingGlass } from "react-icons/hi2"
-import { IFilter } from "@/types"
+import { GrFormCheckmark } from "react-icons/gr"
+import { RxDotFilled } from "react-icons/rx"
+import { ChanelType, IFilter } from "@/types"
 import { Button, Textbox } from "@/components"
+import { channels } from "@/constants"
 
 interface Props {
   filter: IFilter
@@ -17,13 +21,13 @@ const FilterFormComponent: React.FC<Props> = ({
     setFilter({ ...filter, [e.target.name]: e.target.value })
   }
 
-  const handleChanel = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter({ ...filter, chanel: e.target.value })
+  const handleChanel = (chanel: ChanelType) => {
+    setFilter({ ...filter, chanel })
   }
 
   return (
     <form
-      className="inline-flex flex-col gap-y-4 border-y bg-gray-50 px-4 pb-3 pt-2 sm:flex-row sm:items-end sm:gap-x-3"
+      className="inline-flex flex-col gap-y-4 border-y bg-gray-50 px-4 pb-3 pt-2 sm:flex-row sm:items-end sm:gap-x-3 lg:gap-x-4"
       onSubmit={onSubmit}
     >
       <div className="inline-flex items-end gap-x-3">
@@ -54,24 +58,38 @@ const FilterFormComponent: React.FC<Props> = ({
         />
 
         <div>
-          <label
-            htmlFor="location"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="ml-1.5 block text-sm font-medium leading-6 text-gray-900">
             Chanel
           </label>
           <div className="mt-1.5">
-            <select
-              id="location"
-              name="location"
-              className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-green-600 sm:text-sm sm:leading-6"
-              defaultValue="all"
-              value={filter.chanel}
-              onChange={handleChanel}
-            >
-              <option value="all">ທັງໝົດ</option>
-              <option value="EPIN">EPIN</option>
-            </select>
+            <div className="flex">
+              {channels.map(chanel => {
+                const selected = filter.chanel === chanel.value
+                return (
+                  <div
+                    key={chanel.value}
+                    className={clsx(
+                      chanel.className,
+                      "group flex cursor-pointer items-center gap-x-0.5 border-y py-[0.44rem] pl-0.5 pr-2",
+                      selected
+                        ? "border-green-800 bg-green-100 text-green-800" +
+                            chanel.activeClassName
+                        : "border-gray-300 bg-white text-gray-500 hover:border-green-800 hover:bg-green-100 hover:text-green-800",
+                    )}
+                    onClick={() => handleChanel(chanel.value)}
+                  >
+                    {selected ? (
+                      <GrFormCheckmark className="h-5 w-5 text-green-800" />
+                    ) : (
+                      <RxDotFilled className="h-5 w-5 text-gray-500 group-hover:text-green-800" />
+                    )}
+                    <span className="text-sm font-semibold">
+                      {chanel.label}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
 

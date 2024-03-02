@@ -1,0 +1,9 @@
+.idea
+.git
+.gitignore
+.next
+.prettierrc.json
+node_modules
+next-env.d.ts
+Docker.md
+README.md
