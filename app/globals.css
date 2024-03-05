@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for toast body */
+.toast-body {
+    @apply text-sm font-lao;
+}

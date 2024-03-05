@@ -1,7 +1,9 @@
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi2"
-import { useMemo } from "react"
-import { getPages } from "@/services"
+"use client"
+
 import clsx from "clsx"
+import { useMemo } from "react"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi2"
+import { getPages } from "@/services"
 import { IFilter } from "@/types"
 
 interface Props {
@@ -13,7 +15,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const PaginationComponent: React.FC<Props> = ({
+const Pagination: React.FC<Props> = ({
   totalItems,
   totalPages,
   currentPage,
@@ -171,4 +173,4 @@ const PaginationComponent: React.FC<Props> = ({
   )
 }
 
-export default PaginationComponent
+export default Pagination

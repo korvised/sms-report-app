@@ -1,23 +1,27 @@
-import { ChanelType } from "@/types"
+import { IChannel } from "@/types"
 
-interface Channel {
-  value: ChanelType
-  label: string
-  className: string
-  activeClassName: string
-}
+export const smsChannels: IChannel[] = [
+  {
+    value: "EPIN",
+    label: "EPIN",
+  },
+  {
+    value: "CTSV",
+    label: "CTSV",
+  },
+  {
+    value: "Other",
+    label: "Other",
+  },
+]
 
-export const channels: Channel[] = [
+export const filterChannels: IChannel[] = [
   {
     value: "",
     label: "ທັງໝົດ",
-    className: "rounded-l-md border-l",
-    activeClassName: " border-r",
   },
   {
     value: "EPIN",
     label: "EPIN",
-    className: "rounded-r-md border-r",
-    activeClassName: " border-l",
   },
 ]

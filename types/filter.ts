@@ -1,9 +1,9 @@
-export type ChanelType = "EPIN" | string
+export type ChannelType = "EPIN" | "CTSV" | string
 export type ProviderType = "ETL" | "LTC" | "UNITEL"
 
 export interface IFilter {
   search: string
-  chanel: ChanelType
+  chanel: ChannelType
   provider?: ProviderType
   start_date: string
   end_date: string

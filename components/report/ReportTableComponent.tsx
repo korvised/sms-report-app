@@ -1,3 +1,5 @@
+"use client"
+
 import clsx from "clsx"
 import { FiCheckCircle, FiXCircle } from "react-icons/fi"
 import { format } from "date-fns"
@@ -33,7 +35,7 @@ const ReportTableComponent: React.FC<Props> = ({ startIdx, transactions }) => {
                   scope="col"
                   className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
-                  ເຄື່ອຂ່າຍ
+                  ເຄືອຂ່າຍ
                 </th>
                 <th
                   scope="col"
@@ -57,7 +59,7 @@ const ReportTableComponent: React.FC<Props> = ({ startIdx, transactions }) => {
                   scope="col"
                   className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
-                  ເຄື່ອຂ່າຍທີ່ສົ່ງ
+                  ເຄືອຂ່າຍທີ່ສົ່ງ
                 </th>
                 <th
                   scope="col"

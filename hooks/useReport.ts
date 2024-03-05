@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useQuery } from "react-query"
+import { format } from "date-fns"
 import { fetchReport, validateMsisdn } from "@/services"
 import { IFilter, IPagination, ITransaction } from "@/types"
 import { initialFilter, QUERY_KEYS } from "@/constants"
-import { format } from "date-fns"
 
 export const useReport = () => {
   const [preFilter, setPreFilter] = useState<IFilter>(initialFilter)
@@ -16,7 +16,6 @@ export const useReport = () => {
       QUERY_KEYS.transactions,
       filter.search,
       filter.chanel,
-      filter.provider,
       filter.start_date,
       filter.end_date,
       filter.page,
@@ -34,6 +33,7 @@ export const useReport = () => {
       search: validateMsisdn(preFilter.search),
       start_date: format(new Date(preFilter.start_date), "yyyy-MM-dd"),
       end_date: format(new Date(preFilter.end_date), "yyyy-MM-dd"),
+      page: 1,
     })
   }
 

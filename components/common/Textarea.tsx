@@ -1,11 +1,13 @@
+"use client"
+
 import clsx from "clsx"
 import { HTMLProps } from "react"
 
-interface Props extends HTMLProps<HTMLInputElement> {
+interface Props extends HTMLProps<HTMLTextAreaElement> {
   containerClassName?: string
 }
 
-const Textbox: React.FC<Props> = ({
+const Textarea: React.FC<Props> = ({
   containerClassName,
   className,
   ...props
@@ -21,7 +23,7 @@ const Textbox: React.FC<Props> = ({
         </label>
       )}
       <div className={clsx(props.label && "mt-1.5")}>
-        <input
+        <textarea
           className={clsx(
             className,
             `
@@ -50,4 +52,4 @@ const Textbox: React.FC<Props> = ({
   )
 }
 
-export default Textbox
+export default Textarea

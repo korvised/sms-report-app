@@ -1,3 +1,5 @@
+"use client"
+
 import { BiErrorCircle } from "react-icons/bi"
 import { useMemo } from "react"
 import { getFetchErrorMessage } from "@/services"
@@ -6,7 +8,7 @@ interface Props {
   error: unknown
 }
 
-const ErrorStateComponent: React.FC<Props> = ({ error }) => {
+const ErrorState: React.FC<Props> = ({ error }) => {
   const { message } = useMemo(() => getFetchErrorMessage(error), [error])
 
   return (
@@ -24,4 +26,4 @@ const ErrorStateComponent: React.FC<Props> = ({ error }) => {
   )
 }
 
-export default ErrorStateComponent
+export default ErrorState
