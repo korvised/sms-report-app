@@ -77,7 +77,7 @@ const Pagination: React.FC<Props> = ({
         </select>
       </div>
       {children}
-      <div className="flex items-center justify-between bg-white py-3">
+      <div className="flex items-center justify-between py-3">
         <div className="flex flex-1 justify-between sm:hidden">
           <button
             className={clsx(

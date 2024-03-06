@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ToastContainer bodyClassName="toast-body" />
+      <ToastContainer bodyClassName="text-sm font-lao" />
       <ReportComponentPage />
     </QueryClientProvider>
   )

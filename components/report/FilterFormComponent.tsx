@@ -26,7 +26,26 @@ const FilterFormComponent: React.FC<Props> = ({
 
   return (
     <form
-      className="relative flex flex-col gap-y-4 border-y bg-gray-50 px-4 pb-3 pt-2 sm:flex-row sm:items-end sm:gap-x-3 lg:gap-x-4"
+      className="
+        relative
+        mt-2
+        flex
+        flex-col
+        gap-y-4
+        rounded-md
+        border
+        border-green-100
+        bg-white
+        px-4
+        pb-3
+        pt-2
+        shadow-sm
+        shadow-green-50
+        sm:flex-row
+        sm:items-end
+        sm:gap-x-3
+        lg:gap-x-4
+      "
       onSubmit={onSubmit}
     >
       <div className="flex items-end gap-x-3">

@@ -47,10 +47,10 @@ export default function ReportComponentPage() {
         onClose={handleCloseModal}
         onSubmit={handleSubmit}
       />
-      <main className="grid gap-y-3">
+      <main className="grid gap-y-0.5">
         <div className="sm:flex sm:items-end">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">
+            <h1 className="text-lg font-semibold leading-6 text-gray-900">
               ລາຍງານການສົ່ງຂໍ້ຄວາມ
             </h1>
             <p className="mt-2 text-sm text-gray-700">

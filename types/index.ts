@@ -1,4 +1,4 @@
-export * from "./channel"
+export * from "./option"
 export * from "./filter"
 export * from "./pagination"
 export * from "./sms"

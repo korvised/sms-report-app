@@ -2,10 +2,10 @@
 
 import clsx from "clsx"
 import { RadioGroup } from "@headlessui/react"
-import { ChannelType, IChannel } from "@/types"
+import { ChannelType, IOption } from "@/types"
 
 interface Props {
-  channels: IChannel[]
+  channels: IOption<ChannelType>[]
   channel: ChannelType
   setChanel: (chanel: ChannelType) => void
 }

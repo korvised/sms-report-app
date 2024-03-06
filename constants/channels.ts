@@ -1,6 +1,6 @@
-import { IChannel } from "@/types"
+import { ChannelType, IOption } from "@/types"
 
-export const smsChannels: IChannel[] = [
+export const smsChannels: IOption<ChannelType>[] = [
   {
     value: "EPIN",
     label: "EPIN",
@@ -15,7 +15,7 @@ export const smsChannels: IChannel[] = [
   },
 ]
 
-export const filterChannels: IChannel[] = [
+export const filterChannels: IOption<ChannelType>[] = [
   {
     value: "",
     label: "ທັງໝົດ",

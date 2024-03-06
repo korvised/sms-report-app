@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles for toast body */
-.toast-body {
-    @apply text-sm font-lao;
+body {
+    @apply bg-gray-50
 }
