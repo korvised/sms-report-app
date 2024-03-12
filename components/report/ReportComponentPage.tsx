@@ -92,7 +92,7 @@ export default function ReportComponentPage() {
                 {data && (
                   <ReportTableComponent
                     isLoading={isLoading}
-                    startIdx={data.page * data.size}
+                    startIdx={(data.page - 1) * data.size}
                     transactions={data.data}
                   />
                 )}

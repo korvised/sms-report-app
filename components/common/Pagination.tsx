@@ -28,6 +28,18 @@ const Pagination: React.FC<Props> = ({
     [totalPages, currentPage],
   )
 
+  const startIdx = useMemo(
+    () => (currentPage - 1) * pageSize + 1,
+    [currentPage, pageSize],
+  )
+
+  const endIdx = useMemo(() => currentPage * pageSize, [currentPage, pageSize])
+
+  const endIdxCompareWithTotalItems = useMemo(
+    () => Math.min(endIdx, totalItems),
+    [endIdx, totalItems],
+  )
+
   const canGoToPreviousPage = useMemo(() => currentPage > 1, [currentPage])
   const canGoToNextPage = useMemo(
     () => currentPage <= totalPages,
@@ -108,11 +120,14 @@ const Pagination: React.FC<Props> = ({
           <div>
             <p className="text-sm text-gray-700">
               ສະແດງ{" "}
-              <span className="font-medium">{pageSize * currentPage}</span> -{" "}
               <span className="font-medium">
-                {pageSize * (currentPage + 1)}
-              </span>{" "}
-              ຈາກ{" "}
+                {startIdx.toLocaleString("en-US")}
+              </span>
+              <span>{" - "}</span>
+              <span className="font-medium">
+                {endIdxCompareWithTotalItems.toLocaleString("en-US")}
+              </span>
+              <span>{" ຈາກ "}</span>
               <span className="font-medium">
                 {totalItems.toLocaleString("en-US")}
               </span>{" "}
