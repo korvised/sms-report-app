@@ -1,70 +1,26 @@
 "use client"
 
 import clsx from "clsx"
-import { useMemo } from "react"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2"
-import { getPages } from "@/services"
-import { IFilter } from "@/types"
+import { usePagination } from "@/hooks"
+import { IPaginationProps } from "@/types"
 
-interface Props {
-  totalItems: number
-  totalPages: number
-  currentPage: number
-  pageSize: number
-  setFilter: React.Dispatch<React.SetStateAction<IFilter>>
+interface Props extends IPaginationProps {
   children: React.ReactNode
 }
 
-const Pagination: React.FC<Props> = ({
-  totalItems,
-  totalPages,
-  currentPage,
-  pageSize,
-  children,
-  setFilter,
-}) => {
-  const pages = useMemo(
-    () => getPages(totalPages, currentPage),
-    [totalPages, currentPage],
-  )
-
-  const startIdx = useMemo(
-    () => (currentPage - 1) * pageSize + 1,
-    [currentPage, pageSize],
-  )
-
-  const endIdx = useMemo(() => currentPage * pageSize, [currentPage, pageSize])
-
-  const endIdxCompareWithTotalItems = useMemo(
-    () => Math.min(endIdx, totalItems),
-    [endIdx, totalItems],
-  )
-
-  const canGoToPreviousPage = useMemo(() => currentPage > 1, [currentPage])
-  const canGoToNextPage = useMemo(
-    () => currentPage <= totalPages,
-    [currentPage, totalPages],
-  )
-
-  const handleNextPage = () => {
-    if (canGoToNextPage) {
-      setFilter(prev => ({ ...prev, page: prev.page + 1 }))
-    }
-  }
-
-  const handlePreviousPage = () => {
-    if (canGoToPreviousPage) {
-      setFilter(prev => ({ ...prev, page: prev.page - 1 }))
-    }
-  }
-
-  const handlePage = (page: number) => {
-    setFilter(prev => ({ ...prev, page }))
-  }
-
-  const handlePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter(prev => ({ ...prev, size: Number(e.target.value) }))
-  }
+const Pagination: React.FC<Props> = props => {
+  const {
+    pages,
+    startIdx,
+    endIdx,
+    canGoToPreviousPage,
+    canGoToNextPage,
+    handleNextPage,
+    handlePreviousPage,
+    handlePage,
+    handlePageSize,
+  } = usePagination(props)
 
   return (
     <div className="divide-y divide-gray-200">
@@ -79,7 +35,7 @@ const Pagination: React.FC<Props> = ({
           id="location"
           name="location"
           className="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-green-600 sm:text-sm sm:leading-6"
-          defaultValue={pageSize}
+          defaultValue={props.pageSize}
           onChange={handlePageSize}
         >
           <option value={10}>10</option>
@@ -88,7 +44,7 @@ const Pagination: React.FC<Props> = ({
           <option value={100}>100</option>
         </select>
       </div>
-      {children}
+      {props.children}
       <div className="flex items-center justify-between py-3">
         <div className="flex flex-1 justify-between sm:hidden">
           <button
@@ -125,11 +81,11 @@ const Pagination: React.FC<Props> = ({
               </span>
               <span>{" - "}</span>
               <span className="font-medium">
-                {endIdxCompareWithTotalItems.toLocaleString("en-US")}
+                {endIdx.toLocaleString("en-US")}
               </span>
               <span>{" ຈາກ "}</span>
               <span className="font-medium">
-                {totalItems.toLocaleString("en-US")}
+                {props.totalItems.toLocaleString("en-US")}
               </span>{" "}
               ລາຍການ
             </p>
@@ -157,11 +113,11 @@ const Pagination: React.FC<Props> = ({
                   key={idx}
                   className={clsx(
                     "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium",
-                    page === currentPage
+                    page === props.currentPage
                       ? "bg-green-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                       : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0",
                   )}
-                  disabled={page === currentPage || page === "..."}
+                  disabled={page === props.currentPage || page === "..."}
                   onClick={() => handlePage(page as number)}
                 >
                   {page}
