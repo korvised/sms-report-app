@@ -1,9 +1,9 @@
 "use client"
 
-import clsx from "clsx"
 import { FiCheckCircle, FiXCircle } from "react-icons/fi"
 import { format } from "date-fns"
 import { ITransaction } from "@/types"
+import { ProviderItemComponent } from "@/components"
 
 interface Props {
   startIdx: number
@@ -104,27 +104,15 @@ const ReportTableComponent: React.FC<Props> = ({ startIdx, transactions }) => {
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     <div className="inline-flex gap-x-1">
-                      {item.entries.map(entry => {
-                        const isSuccess = entry.status === "SUCCESS"
-                        return (
-                          <div
-                            key={entry.id}
-                            className={clsx(
-                              isSuccess ? "bg-green-600" : "bg-red-600",
-                              "flex items-center gap-x-1 rounded-full px-2 py-0.5 text-white",
-                            )}
-                          >
-                            {isSuccess ? (
-                              <FiCheckCircle className="h-3.5 w-3.5" />
-                            ) : (
-                              <FiXCircle className="h-4 w-4" />
-                            )}
-                            <span className="text-[0.7rem]">
-                              {entry.provider}
-                            </span>
-                          </div>
-                        )
-                      })}
+                      {item.entries.map(({ id, provider, result, status }) => (
+                        <ProviderItemComponent
+                          key={id.toString()}
+                          id={id.toString()}
+                          provider={provider}
+                          content={result}
+                          disable={status !== "SUCCESS"}
+                        />
+                      ))}
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

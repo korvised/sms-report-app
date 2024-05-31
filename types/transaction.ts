@@ -17,7 +17,8 @@ export interface IEntry {
   msisdn: string
   provider: string
   resend: boolean
-  status: string
+  status: "SUCCESS" | string
+  result: string
   created_at: string
   updated_at: string
 }

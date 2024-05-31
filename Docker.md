@@ -3,6 +3,6 @@
 [//]: # (https://nextjs.org/docs/pages/api-reference/next-config-js/output)
 
 ```shell
-docker build --platform linux/amd64 -t apb.registry-img.com/app/sms-report-app:v1.0.4 .
-docker push apb.registry-img.com/app/sms-report-app:v1.0.4
+docker build --platform linux/amd64 -t apb.registry-img.com/app/sms-report-app:v1.0.5 .
+docker push apb.registry-img.com/app/sms-report-app:v1.0.5
 ```
